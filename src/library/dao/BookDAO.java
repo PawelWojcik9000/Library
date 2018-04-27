@@ -26,6 +26,7 @@ public class BookDAO {
     private static final String ADD_BOOKS_AUTHORS_QUERY = "INSERT INTO books_authors VALUES (NULL, ?, ?);";
     private static final String GET_AUTHORS_BY_BOOK_ID_QUERY = "SELECT author_id FROM books_authors WHERE book_id = ";
     private static final String GET_BOOK_BY_ID_QUERY = "SELECT id,title,type,simpleAuthorId,available,rentAmount,returnedToLate,isbn,pages,published FROM books WHERE id = ";
+    private static final String REMOVE_AUTHOR_FROM_BOOK_QUERY = "DELETE FROM books_authors WHERE book_id=? AND author_id=?;";
     
     private Connection conn;
     private Statement stat;
@@ -134,6 +135,21 @@ public class BookDAO {
 		}
 		return authorsIds;
 		
+	}
+	
+	public boolean removeAuthorFromBook(String bookId, String authorId) {
+		try {
+			PreparedStatement prepStmt = conn.prepareStatement(REMOVE_AUTHOR_FROM_BOOK_QUERY);
+			prepStmt.setString(1, bookId);
+			prepStmt.setString(2, authorId);
+			prepStmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Remove author from book error");
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public List<Book> getBooks() {

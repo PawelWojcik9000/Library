@@ -21,6 +21,14 @@ public class LibraryMember {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 	}
+	public LibraryMember(int id, String name, String surName, String address, String phoneNumber) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surName = surName;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+	}
 	
 	public LibraryMember() {
 		

@@ -17,7 +17,6 @@ public class AuthorDAO {
     private static final String DB_URL = "jdbc:sqlite:C:\\Users\\pawelw\\Desktop\\library_database\\libraryDatabase.db";
     private static final String ADD_AUTHOR_QUERY = "INSERT INTO authors VALUES (NULL, ?, ?, NULL);";
     private static final String EDIT_AUTHOR_QUERY = "UPDATE authors SET name=?, surname=? WHERE id=?;";
-    private static final String SET_FOREIGNKEY_QUERY = "UPDATE authors SET book_id=? WHERE id=?;";
     private static final String DELETE_AUTHOR_QUERY = "DELETE FROM authors WHERE id = ?";
     private static final String GET_AUTHORS_QUERY = "SELECT id,name,surname FROM authors;";
     private static final String GET_AUTHORS_BY_ID_QUERY = "SELECT id,name,surname FROM authors WHERE id = ";
@@ -133,19 +132,19 @@ public class AuthorDAO {
 		return true;
 	}
 	
-	public boolean setAuthorsForeignKey(String id, String foreignId) {
-		try {
-			PreparedStatement prepStmt = conn.prepareStatement(EDIT_AUTHOR_QUERY);
-			prepStmt.setString(1, foreignId);
-			prepStmt.setString(2, id);
-		} catch (SQLException e) {
-			System.err.println("Author foreign key set error");
-            e.printStackTrace();
-            return false;
-		}
-		
-		return true;
-	}
+//	public boolean setAuthorsForeignKey(String id, String foreignId) {
+//		try {
+//			PreparedStatement prepStmt = conn.prepareStatement(EDIT_AUTHOR_QUERY);
+//			prepStmt.setString(1, foreignId);
+//			prepStmt.setString(2, id);
+//		} catch (SQLException e) {
+//			System.err.println("Author foreign key set error");
+//            e.printStackTrace();
+//            return false;
+//		}
+//		
+//		return true;
+//	}
 	
 	public boolean deleteAuthor(String id) {
 		try {

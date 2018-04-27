@@ -38,7 +38,8 @@ public class AddBook extends HttpServlet {
 		String title = request.getParameter("book_title");
 		String type = request.getParameter("book_type");
 		boolean available = false;
-		if(request.getParameter("book_available").equals("true")) {
+		String checkedAvailable = request.getParameter("book_available");
+		if(checkedAvailable != null && !checkedAvailable.isEmpty()) {
 			available = true;
 		}
 		int rentAmount = Integer.parseInt(request.getParameter("book_rent_amount"));
@@ -52,7 +53,7 @@ public class AddBook extends HttpServlet {
 		
 		bookDAO.persistBook(title, type, available, rentAmount, returnedToLate, isbn, pages, published);
 		ServletContext context= getServletContext();
-		RequestDispatcher rd= context.getRequestDispatcher("/bookDetails");
+		RequestDispatcher rd= context.getRequestDispatcher("/listBooks");
 		rd.forward(request, response);
 		bookDAO.closeConnection();
 	}

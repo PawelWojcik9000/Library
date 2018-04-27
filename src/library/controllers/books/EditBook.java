@@ -1,7 +1,6 @@
 package library.controllers.books;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.dao.BookDAO;
+import library.entities.Book;
 
 
 @WebServlet("/editBook")
@@ -22,6 +22,9 @@ public class EditBook extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		bookId = request.getParameter("bookid");
+		BookDAO bookDAO = new BookDAO();
+		Book book = bookDAO.getBookById(bookId);
+		request.setAttribute("book", book);
 		getServletContext().getRequestDispatcher("/views/editBookForm.jsp").forward(request, response);
 	}
 
@@ -31,7 +34,8 @@ public class EditBook extends HttpServlet {
 		String title = request.getParameter("book_title");
 		String type = request.getParameter("book_type");
 		boolean available = false;
-		if(request.getParameter("book_available").equals("true")) {
+		String checkedAvailable = request.getParameter("book_available");
+		if(checkedAvailable != null && !checkedAvailable.isEmpty()) {
 			available = true;
 		}
 		int rentAmount = Integer.parseInt(request.getParameter("book_rent_amount"));

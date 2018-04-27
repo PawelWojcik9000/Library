@@ -3,8 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />">
+<title>Book details</title>
 </head>
 <body>
 
@@ -27,7 +28,8 @@
 			<td>${book.type}</td>
 			<td><c:forEach items="${book.authors}" var="author">
 						${author.name}
-						${author.surname}<br>
+						${author.surname}
+						<a href="<c:url value="/removeAuthorFromBook?bookid=${book.id}&authorid=${author.id}" />">Remove</a><br>
 				</c:forEach></td>
 			<td>${book.available}</td>
 			<td>${book.rentAmount}</td>
@@ -58,7 +60,7 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td><input type="submit" value="Add" /></td>
+				<td colspan="3"><input type="submit" value="Add" /></td>
 			</tr>
 		</table>
 	</form><br><br>

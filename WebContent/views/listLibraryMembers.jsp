@@ -14,14 +14,18 @@
 			<th>ID</th>
 			<th>Name</th>
 			<th>Surname</th>
+			<th>Address</th>
+			<th>Phone number</th>
 		</tr>
-		<c:forEach items="${authors}" var="author">
+		<c:forEach items="${library_members}" var="libmember">
 			<tr>
-				<td>${author.id}</td>
-				<td>${author.name}</td>
-				<td>${author.surname}</td>
-				<td><a href="<c:url value="/editAuthor?authorid=${author.id}" />">Edit</a></td>
-				<td><a href="<c:url value="/deleteAuthor?authorid=${author.id}" />">Delete</a></td>
+				<td>${libmember.id}</td>
+				<td>${libmember.name}</td>
+				<td>${libmember.surName}</td>
+				<td>${libmember.address}</td>
+				<td>${libmember.phoneNumber}</td>
+				<td><a href="<c:url value="/editLibraryMember?libmemberid=${libmember.id}" />">Edit</a></td>
+				<td><a href="<c:url value="/deleteLibraryMember?libmemberid=${libmember.id}" />">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table><br><br>
