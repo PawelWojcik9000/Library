@@ -18,11 +18,12 @@
 			<tr>
 				<td>${book.title}</td>
 				<td>${book.type}</td>
-				<td><a href="<c:url value="/bookDetails?bookid=${book.id}" />">Book details</a></td>
+				<td><a href="<c:url value="/bookDetails?bookid=${book.id}" />">Book
+						details</a></td>
 			</tr>
 		</c:forEach>
 	</table>
-	
+
 	<a href="<c:url value="/home" />">Go to homepage</a>
 
 </body>

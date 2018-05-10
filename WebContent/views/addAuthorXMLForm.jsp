@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="addAuthor" method="POST">
+	<form action="addAuthorXML" method="POST">
 		<table>
 			<tr>
 				<th colspan="2">Add author</th>

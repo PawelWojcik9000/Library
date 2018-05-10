@@ -29,7 +29,9 @@
 			<td><c:forEach items="${book.authors}" var="author">
 						${author.name}
 						${author.surname}
-						<a href="<c:url value="/removeAuthorFromBook?bookid=${book.id}&authorid=${author.id}" />">Remove</a><br>
+						<a
+						href="<c:url value="/removeAuthorFromBook?bookid=${book.id}&authorid=${author.id}" />">Remove</a>
+					<br>
 				</c:forEach></td>
 			<td>${book.available}</td>
 			<td>${book.rentAmount}</td>
@@ -40,7 +42,9 @@
 			<td><a href="<c:url value="/editBook?bookid=${book.id}" />">Edit</a></td>
 			<td><a href="<c:url value="/deleteBook?bookid=${book.id}" />">Delete</a></td>
 		</tr>
-	</table><br><br>
+	</table>
+	<br>
+	<br>
 
 	<form action="addBooksAuthors" method="POST">
 		<table>
@@ -51,10 +55,9 @@
 			</tr>
 			<c:forEach items="${authors}" var="author">
 				<tr>
-					<td>
-						<input type="checkbox" value="${author.id}" name="author_id" />
-						<input type="hidden" value="${book.id}" name="book_id" />
-					</td>
+					<td><input type="checkbox" value="${author.id}"
+						name="author_id" /> <input type="hidden" value="${book.id}"
+						name="book_id" /></td>
 					<td>${author.name}</td>
 					<td>${author.surname}</td>
 				</tr>
@@ -63,7 +66,9 @@
 				<td colspan="3"><input type="submit" value="Add" /></td>
 			</tr>
 		</table>
-	</form><br><br>
+	</form>
+	<br>
+	<br>
 
 
 

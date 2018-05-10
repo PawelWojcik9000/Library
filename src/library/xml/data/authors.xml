@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<authors>
+
+	<author id="1">
+		<firstName>Jan</firstName>
+		<lastName>Janowski</lastName>
+	</author>
+	<author id="2">
+		<firstName>Marek</firstName>
+		<lastName>Markowski</lastName>
+	</author>
+	<author id="3">
+		<firstName>Zenek</firstName>
+		<lastName>Zenkowy</lastName>
+	</author>
+
+	<author id="4">
+		<firstName>nowy</firstName>
+		<lastName>autor</lastName>
+	</author>
+	<author id="5">
+		<firstName>jeszcze</firstName>
+		<lastName>jeden</lastName>
+	</author>
+
+	<author id="6">
+		<firstName>imie autora</firstName>
+		<lastName>nazwisko</lastName>
+	</author>
+</authors>

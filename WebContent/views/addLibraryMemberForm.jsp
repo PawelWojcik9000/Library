@@ -9,25 +9,25 @@
 </head>
 <body>
 
-	<form action = "addLibraryMember" method = "POST">
+	<form action="addLibraryMember" method="POST">
 		<table>
 			<tr>
 				<th colspan="2">Add library members</th>
 			</tr>
 			<tr>
-				<td>Name: </td>
+				<td>Name:</td>
 				<td><input type="text" name="name" /></td>
 			</tr>
 			<tr>
-				<td>Surname: </td>
+				<td>Surname:</td>
 				<td><input type="text" name="surname" /></td>
 			</tr>
 			<tr>
-				<td>Address</td> 
+				<td>Address</td>
 				<td><input type="text" name="address" /></td>
 			</tr>
 			<tr>
-				<td>Phone number: </td>
+				<td>Phone number:</td>
 				<td><input type="text" name="phone_number" /></td>
 			</tr>
 			<tr>

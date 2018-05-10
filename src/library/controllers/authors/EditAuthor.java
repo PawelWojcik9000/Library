@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import library.dao.AuthorDAO;
-import library.dao.BookDAO;
 import library.entities.Author;
 
 

@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/style.css" />">
 <title>List authors</title>
 </head>
 <body>
@@ -30,7 +31,7 @@
 	<br>
 	<br>
 
-	<a href="<c:url value="/home" />">Go to homepage</a>
+	<a href="<c:url value="/addAuthorXML" />">Add author to XML</a>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -24,11 +24,15 @@
 				<td>${libmember.surName}</td>
 				<td>${libmember.address}</td>
 				<td>${libmember.phoneNumber}</td>
-				<td><a href="<c:url value="/editLibraryMember?libmemberid=${libmember.id}" />">Edit</a></td>
-				<td><a href="<c:url value="/deleteLibraryMember?libmemberid=${libmember.id}" />">Delete</a></td>
+				<td><a
+					href="<c:url value="/editLibraryMember?libmemberid=${libmember.id}" />">Edit</a></td>
+				<td><a
+					href="<c:url value="/deleteLibraryMember?libmemberid=${libmember.id}" />">Delete</a></td>
 			</tr>
 		</c:forEach>
-	</table><br><br>
+	</table>
+	<br>
+	<br>
 
 	<a href="<c:url value="/home" />">Go to homepage</a>
 

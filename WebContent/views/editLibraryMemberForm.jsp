@@ -9,26 +9,30 @@
 </head>
 <body>
 
-	<form action = "editLibraryMember" method = "POST">
+	<form action="editLibraryMember" method="POST">
 		<table>
 			<tr>
 				<th colspan="2">Add library members</th>
 			</tr>
 			<tr>
-				<td>Name: </td>
-				<td><input type="text" name="name" value="${libraryMember.name}" /></td>
+				<td>Name:</td>
+				<td><input type="text" name="name"
+					value="${libraryMember.name}" /></td>
 			</tr>
 			<tr>
-				<td>Surname: </td>
-				<td><input type="text" name="surname" value="${libraryMember.surName}" /></td>
+				<td>Surname:</td>
+				<td><input type="text" name="surname"
+					value="${libraryMember.surName}" /></td>
 			</tr>
 			<tr>
-				<td>Address</td> 
-				<td><input type="text" name="address" value="${libraryMember.address}" /></td>
+				<td>Address</td>
+				<td><input type="text" name="address"
+					value="${libraryMember.address}" /></td>
 			</tr>
 			<tr>
-				<td>Phone number: </td>
-				<td><input type="text" name="phone_number" value="${libraryMember.phoneNumber}" /></td>
+				<td>Phone number:</td>
+				<td><input type="text" name="phone_number"
+					value="${libraryMember.phoneNumber}" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="Edit" /></td>
