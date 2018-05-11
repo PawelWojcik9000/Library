@@ -22,9 +22,9 @@
 				<td>${author.name}</td>
 				<td>${author.surname}</td>
 				<td><a
-					href="<c:url value="/editAuthor?authorid=${author.id}" />">Edit</a></td>
+					href="<c:url value="/editAuthorXML?authorid=${author.id}" />">Edit</a></td>
 				<td><a
-					href="<c:url value="/deleteAuthor?authorid=${author.id}" />">Delete</a></td>
+					href="<c:url value="/deleteAuthorXML?authorid=${author.id}" />">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

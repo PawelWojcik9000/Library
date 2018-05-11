@@ -13,15 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 import library.xml.crud.AuthorsXmlDAO;
 
 
-@WebServlet("/deleteAuthorXML")
-public class DeleteAuthorXML extends HttpServlet {
+@WebServlet("/editAuthorXML")
+public class EditAuthorXML extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	String authorId = null;
+	String authorName = null;
+	String authorSurname = null;
+	AuthorsXmlDAO authXmlDAO = new AuthorsXmlDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AuthorsXmlDAO authXmlDAO = new AuthorsXmlDAO();
-		String authorId = request.getParameter("authorid");
-		authXmlDAO.deleteAuthorXml(authorId);
+		authorId = request.getParameter("authorid");
+		request.setAttribute("author", authXmlDAO.getAuthorByIdXml(authorId));
+		getServletContext().getRequestDispatcher("/views/editAuthorFormXML.jsp").forward(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		authorName = request.getParameter("author_name");
+		authorSurname = request.getParameter("author_surname");
+		authXmlDAO.editAuthorXml(authorId, authorName, authorSurname);
 		ServletContext context= getServletContext();
 		RequestDispatcher rd= context.getRequestDispatcher("/homexml");
 		rd.forward(request, response);

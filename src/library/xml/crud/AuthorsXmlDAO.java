@@ -34,14 +34,14 @@ public class AuthorsXmlDAO {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.newDocument();
-
 			Element rootElement = doc.createElement("authors");
 			doc.appendChild(rootElement);
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml"));
+			StreamResult result = new StreamResult(new File(
+					"C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml"));
 			transformer.transform(source, result);
 
 		} catch (ParserConfigurationException | TransformerException e) {
@@ -67,16 +67,10 @@ public class AuthorsXmlDAO {
 
 			for (int i = 0; i < nList.getLength(); i++) {
 				Node nNode = nList.item(i);
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+				// System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
-//					System.out.println("Author's id: " + eElement.getAttribute("id"));
-//					System.out.println(
-//							"First Name: " + eElement.getElementsByTagName("firstName").item(0).getTextContent());
-//					System.out.println(
-//							"Last Name: " + eElement.getElementsByTagName("lastName").item(0).getTextContent());
-
 					authors.add(new Author(Integer.parseInt(eElement.getAttribute("id")),
 							eElement.getElementsByTagName("firstName").item(0).getTextContent(),
 							eElement.getElementsByTagName("lastName").item(0).getTextContent()));
@@ -102,8 +96,9 @@ public class AuthorsXmlDAO {
 			DocumentBuilder docBuilder;
 			docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.parse(inputFile);
+			doc.getDocumentElement().normalize();
 			NodeList nList = doc.getElementsByTagName("author");
-			if(nList.getLength() == 0) {
+			if (nList.getLength() == 0) {
 				id = 1;
 			} else {
 				System.out.println(nList.item(nList.getLength() - 1).getAttributes().item(0).getTextContent());
@@ -127,18 +122,18 @@ public class AuthorsXmlDAO {
 			Element authorSurname = doc.createElement("lastName");
 			authorSurname.appendChild(doc.createTextNode(surname));
 			authorElement.appendChild(authorSurname);
-			
+
 			authors.appendChild(authorElement);
-			
+
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml"));
+			StreamResult result = new StreamResult(new File(
+					"C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml"));
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			transformer.transform(source, result);
 
-			
 		} catch (FileNotFoundException e) {
 			createNewAuthorsXml();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
@@ -153,9 +148,111 @@ public class AuthorsXmlDAO {
 		}
 
 	}
-	
+
 	public void deleteAuthorXml(String id) {
+		try {
+			File inputFile = new File(
+					"C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml");
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.parse(inputFile);
+			doc.getDocumentElement().normalize();
+			NodeList nList = doc.getElementsByTagName("author");
+
+			for (int i = 0; i < nList.getLength(); i++) {
+				Node nNode = nList.item(i);
+				// System.out.println("\nCurrent Element: " + nNode.getNodeName());
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+					System.out.println(eElement.getAttribute("id"));
+					if (eElement.getAttribute("id").equals(id)) {
+						Node rootElement = eElement.getParentNode();
+						rootElement.removeChild(eElement);
+					}
+				}
+			}
+
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File(
+					"C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml"));
+			transformer.transform(source, result);
+
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void editAuthorXml(String id, String name, String surname) {
+
+		try {
+			File inputFile = new File(
+					"C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml");
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.parse(inputFile);
+			doc.getDocumentElement().normalize();
+			NodeList nList = doc.getElementsByTagName("author");
+
+			for (int i = 0; i < nList.getLength(); i++) {
+				Node nNode = nList.item(i);
+				// System.out.println("\nCurrent Element: " + nNode.getNodeName());
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+					System.out.println(eElement.getAttribute("id"));
+					if (eElement.getAttribute("id").equals(id)) {
+						eElement.getElementsByTagName("firstName").item(0).setTextContent(name);
+						eElement.getElementsByTagName("lastName").item(0).setTextContent(surname);
+					}
+				}
+			}
+
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File(
+					"C:\\Users\\pawelw\\Desktop\\workspace\\libraryWeb\\src\\library\\xml\\data\\authors.xml"));
+			transformer.transform(source, result);
+
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public Author getAuthorByIdXml(String id) {
+		Author author = new Author();
 		
+		List<Author> authors = getAuthorsXml();
+		for (Author auth : authors) {
+			if(auth.getId() == Integer.parseInt(id) ) {
+				author = auth;
+			}
+		}
+		return author;
 	}
 
 }

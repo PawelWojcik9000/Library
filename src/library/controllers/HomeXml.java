@@ -25,7 +25,6 @@ public class HomeXml extends HttpServlet {
 //		LibraryDAO libraryDAO = new LibraryDAO();
 		AuthorsXmlDAO authXmlDAO = new AuthorsXmlDAO();
 		request.setAttribute("authors", authXmlDAO.getAuthorsXml());
-		//authXmlDAO.addAuthorXml("Zenek", "Zenkowy");
 		getServletContext().getRequestDispatcher("/views/homepagexml.jsp").forward(request, response);
 	}
 
